@@ -3,12 +3,24 @@ import Login from "./views/Login.jsx";
 import Signup from "./views/Signup.jsx";
 import Users from "./views/Users.jsx";
 import NotFound from "./views/NotFound.jsx";
-import defaultLayout from "./components/DefaultLayout.jsx";
+import DefaultLayout from "./components/DefaultLayout.jsx";
+import GuestLayout from "./components/GuestLayout.jsx";
+import { Children } from "react";
 
 const router = createBrowserRouter([
     {
       path: '/',
-      element: <DefaultLayout/>
+      element: <DefaultLayout/>,
+      children: [    
+        {
+          path: '/Users',
+          element: <Users />
+        },
+      ],
+    },
+    {
+      path: '/',
+      element: <GuestLayout/>
     },
     {
         path: '/login',
@@ -17,10 +29,6 @@ const router = createBrowserRouter([
     {
       path: '/Signup',
       element: <Signup />
-    },
-    {
-      path: '/Users',
-      element: <Users />
     },
     {
       path: '*',
